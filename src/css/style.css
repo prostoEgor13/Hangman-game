@@ -57,7 +57,7 @@
     @apply w-10 h-10 sm:w-14 sm:h-14 m-1 sm:m-2;
   }
   .hangman-img {
-    @apply w-56 h-40 sm:h-60;
+    @apply w-56 h-40 sm:h-56 py-2;
   }
   .result-header {
     @apply text-2xl font-bold;

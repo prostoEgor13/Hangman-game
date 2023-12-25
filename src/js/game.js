@@ -105,8 +105,10 @@ const stopGame = (status) => {
     } else if (status === 'lose') {
         document.getElementById('game').innerHTML += '<h2 class="result-header">You lost :(</h2>'
     } else if (status === 'quite') {
-        logoH1.classList.remove('logo-sm')
-        document.getElementById('hangman-id').remove()
+        document.getElementById('hangman-id').src = 'images/hg-again.png'
+        // logoH1.classList.remove('logo-sm')
+        // document.getElementsById('hangman-id').remove()
+
     }
 
     document.getElementById('game').innerHTML += `<p>The word was:<span class="result-word">${word}</span></p><button id="play-again" class="button-primary px-5 py-2 mt-3">Play again</button>`
@@ -144,7 +146,7 @@ export const startGame = () => {
     document.getElementById('quitebutton-id').onclick = () => {
         const isSure = confirm('Are ypu sure you want to quite and lose your progress?')
         if (isSure) {
-            stopGame('quit')
+            stopGame('quite')
         }
 
     }
