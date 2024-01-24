@@ -1,6 +1,7 @@
 import { WORDS } from "./consts"
 import { KEYBOARD_LETTERS } from "./consts"
 
+
 const gameDiv = document.getElementById('game')
 const logoH1 = document.getElementById('logo')
 
@@ -41,6 +42,28 @@ const createKeyboardHtml = () => {
     keyboard.innerHTML = keyboardHtml
     return keyboard
 }
+
+const createDevInfo = () => {
+
+    const btnDev = document.getElementById('aboutDeveloper')
+
+    btnDev.addEventListener("click", (event) => {
+        // document.getElementById('logo').remove()
+        // document.getElementById('startGame').remove()
+        // document.getElementById('aboutDeveloper').remove()
+        document.getElementById('game').innerHTML =
+            `<div class="devInfo">
+        <p>Code written by Egor Zhirkov</p>
+        <p class="devInfoLink"><a href="https://t.me/egorwebprogrammer">Link to portfolio</a></p>
+        <p>Thank you!</p>
+            </div>`
+
+    })
+    return btnDev
+
+}
+createDevInfo()
+
 
 const createHangmanImg = () => {
     const image = document.createElement('img')
@@ -111,8 +134,8 @@ const stopGame = (status) => {
 
     }
 
-    document.getElementById('game').innerHTML += `<p>The word was:<span class="result-word">${word}</span></p><button id="play-again" class="button-primary px-5 py-2 mt-3">Play again</button>`
-    document.getElementById('play-again').onclick = startGame
+    document.getElementById('game').innerHTML += `<p id="hiddenWord">The word was:<span class="result-word">${word}</span></p><button id="play-again" class="button-primary px-5 py-2 mt-3">Play again</button>`
+    document.getElementById('play-again').onclick = startScreen
 }
 
 export const startGame = () => {
@@ -122,6 +145,8 @@ export const startGame = () => {
     const randomIndex = Math.floor(Math.random() * WORDS.length)
     const wordToGuess = WORDS[randomIndex]
     sessionStorage.setItem('word', wordToGuess)
+
+
 
     gameDiv.innerHTML = createplaceholdersHtml()
 
@@ -138,10 +163,13 @@ export const startGame = () => {
 
     const hangmanImg = createHangmanImg()
     const quite = createQuiteButton()
+    // const goTostartScreen = startScreen()
+
 
     gameDiv.prepend(hangmanImg)
     gameDiv.appendChild(keyboardDiv)
     gameDiv.appendChild(quite)
+    // gameDiv.appendChild(goTostartScreen)
 
     document.getElementById('quitebutton-id').onclick = () => {
         const isSure = confirm('Are ypu sure you want to quite and lose your progress?')
@@ -150,4 +178,11 @@ export const startGame = () => {
         }
 
     }
+
+
+}
+const startScreen = () => {
+    gameDiv.innerHTML =
+        '  <button id="startGame" class="button-primary">Start game</button>';
+    document.getElementById('startGame').addEventListener('click', startGame);
 }

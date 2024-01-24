@@ -41,6 +41,15 @@
   .button-primary {
     @apply flex justify-center items-center bg-slate-200 rounded-md font-medium px-5 py-2 hover:bg-slate-300 dark:bg-indigo-500 enabled:dark:hover:bg-indigo-600 disabled:opacity-20 disabled:cursor-not-allowed;
   }
+  .button-primaryDev {
+    @apply flex justify-center items-center bg-slate-100 rounded-md font-medium px-5 py-2 hover:bg-slate-300 dark:bg-indigo-400 enabled:dark:hover:bg-indigo-600 disabled:opacity-20 disabled:cursor-not-allowed;
+  }
+  .devInfo {
+    @apply flex flex-col justify-center items-center bg-slate-100 px-10 py-20 rounded-md text-lg font-light dark:bg-zinc-700;
+  }
+  .devInfoLink {
+    @apply font-medium
+  }
   .button-secondary {
     @apply border border-black rounded-md hover:bg-slate-100 dark:border-white dark:hover:bg-zinc-600;
   }
