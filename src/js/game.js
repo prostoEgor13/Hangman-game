@@ -15,12 +15,10 @@ const createplaceholdersHtml = () => {
     // const placeholdersHtml = wordArray.reduce((acc, current, i) =>
     //     acc + `<h1 id="letter_${i}" class="letter">_</h1>`, ''
     // )
-
     let placeholdersHtml = ''
     for (let i = 0; i < word.length; i++) {
         placeholdersHtml = placeholdersHtml + `<h1 id="letter_${i}" class="letter">_</h1>`
     }
-
     return `<div id="placeholders" class="placeholders-wrapper ">${placeholdersHtml}</div>`
 }
 
@@ -146,10 +144,7 @@ export const startGame = () => {
     const wordToGuess = WORDS[randomIndex]
     sessionStorage.setItem('word', wordToGuess)
 
-
-
     gameDiv.innerHTML = createplaceholdersHtml()
-
     gameDiv.innerHTML += `<p id="tries" class="mt-2">TRIES LEFT: <span id="tries-left" class="font-medium text-red-600">10</span></p>`
 
     const keyboardDiv = createKeyboardHtml()
@@ -163,13 +158,10 @@ export const startGame = () => {
 
     const hangmanImg = createHangmanImg()
     const quite = createQuiteButton()
-    // const goTostartScreen = startScreen()
-
 
     gameDiv.prepend(hangmanImg)
     gameDiv.appendChild(keyboardDiv)
     gameDiv.appendChild(quite)
-    // gameDiv.appendChild(goTostartScreen)
 
     document.getElementById('quitebutton-id').onclick = () => {
         const isSure = confirm('Are ypu sure you want to quite and lose your progress?')
@@ -178,7 +170,7 @@ export const startGame = () => {
         }
 
     }
-
+    document.getElementById('aboutDeveloper').remove()
 
 }
 const startScreen = () => {
