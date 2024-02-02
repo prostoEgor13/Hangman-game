@@ -188,7 +188,7 @@ export const startGameRandom = () => {
         }
 
     }
-    document.getElementById('aboutDeveloper').remove()
+    // document.getElementById('aboutDeveloper').remove()
 }
 export const startGameAnimals = () => {
     triesLeft = 10
@@ -225,7 +225,7 @@ export const startGameAnimals = () => {
         }
 
     }
-    document.getElementById('aboutDeveloper').remove()
+    // document.getElementById('aboutDeveloper').remove()
 
 }
 
@@ -264,7 +264,7 @@ export const startGameCars = () => {
         }
 
     }
-    document.getElementById('aboutDeveloper').remove()
+    // document.getElementById('aboutDeveloper').remove()
 
 }
 export const startGameCities = () => {
@@ -303,7 +303,7 @@ export const startGameCities = () => {
         }
 
     }
-    document.getElementById('aboutDeveloper').remove()
+    // document.getElementById('aboutDeveloper').remove()
 
 }
 export const startGameIt = () => {
@@ -342,7 +342,7 @@ export const startGameIt = () => {
         }
 
     }
-    document.getElementById('aboutDeveloper').remove()
+    // document.getElementById('aboutDeveloper').remove()
 
 }
 const returnSameMode = () => {
