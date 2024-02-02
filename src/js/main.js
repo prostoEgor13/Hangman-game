@@ -15,7 +15,7 @@ createDevInfo()
 const gameDiv = document.getElementById('game')
 export const startGameButton = document.getElementById('startGame')
 // startGameButton.addEventListener('click', startGame)
-export let MODES=''
+export let MODES = ''
 
 const random = () => {
     const categoryRandom = document.createElement('button')
@@ -73,6 +73,7 @@ const showIt = it()
 export const showModes = () => {
     startGameButton.addEventListener('click', () => {
         document.getElementById('startGame').remove()
+        document.getElementById('aboutDeveloper').remove()
         gameDiv.appendChild(showRandom)
         gameDiv.appendChild(showAnimals)
         gameDiv.appendChild(showCars)
