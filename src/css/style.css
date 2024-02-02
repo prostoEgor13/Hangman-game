@@ -66,7 +66,7 @@
     @apply w-10 h-10 sm:w-14 sm:h-14 m-1 sm:m-2;
   }
   .hangman-img {
-    @apply w-40 h-40  sm:h-40 w-40  
+    @apply w-40 h-40  sm:h-40 w-40 -mt-8 mb-2;
   }
   .result-header {
     @apply text-2xl font-bold;
@@ -78,6 +78,12 @@
     @apply text-red-600;
   }
   .result-word {
-    @apply font-medium uppercase;
+    @apply font-medium uppercase ;
+  }
+  .catigories {
+    @apply flex flex-col -mt-6 ;
+  }
+  .catigoriesBtn{
+    @apply justify-center mt-6 items-center bg-slate-200 rounded-md text-xl h-16 w-80 hover:bg-slate-300 dark:bg-indigo-500 enabled:dark:hover:bg-indigo-600 disabled:opacity-20 disabled:cursor-not-allowed
   }
 }

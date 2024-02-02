@@ -1,12 +1,16 @@
-import { WORDS } from "./consts"
+import { WORDSRANDOM, WORDSANIMALS, WORDSCARS, WORDSCITIES, WORDSIT } from "./consts"
 import { KEYBOARD_LETTERS } from "./consts"
-
+import { MODES } from "./main"
 
 const gameDiv = document.getElementById('game')
 const logoH1 = document.getElementById('logo')
 
+
 let triesLeft
 let winCount
+
+
+
 
 const createplaceholdersHtml = () => {
     const word = sessionStorage.getItem('word')
@@ -41,7 +45,7 @@ const createKeyboardHtml = () => {
     return keyboard
 }
 
-const createDevInfo = () => {
+export const createDevInfo = () => {
 
     const btnDev = document.getElementById('aboutDeveloper')
 
@@ -55,12 +59,22 @@ const createDevInfo = () => {
         <p class="devInfoLink"><a href="https://t.me/egorwebprogrammer">Link to portfolio</a></p>
         <p>Thank you!</p>
             </div>`
-
     })
     return btnDev
 
 }
 createDevInfo()
+
+const createNameofMode = () => {
+    const modes=localStorage.getItem('ChooseMode')
+    const h1NameofMode = document.createElement('h1')
+    h1NameofMode.classList.add('NameofMode')
+    h1NameofMode.id = 'h1NameofMode-id'
+    let h1NameofModeHtml = ''
+    h1NameofModeHtml = h1NameofModeHtml + `<h1>Theme: ${modes}</h1>`
+    h1NameofMode.innerHTML = h1NameofModeHtml
+    return h1NameofMode
+}
 
 
 const createHangmanImg = () => {
@@ -132,16 +146,18 @@ const stopGame = (status) => {
 
     }
 
-    document.getElementById('game').innerHTML += `<p id="hiddenWord">The word was:<span class="result-word">${word}</span></p><button id="play-again" class="button-primary px-5 py-2 mt-3">Play again</button>`
+    document.getElementById('game').innerHTML += `<p id="hiddenWord">The word was:<span class="result-word"> ${word}</span></p><button id="play-again" class="button-primary px-5 py-2 mt-3">Play again</button>`
     document.getElementById('play-again').onclick = startScreen
 }
 
-export const startGame = () => {
+export const startGameRandom = () => {
+ 
     triesLeft = 10
     winCount = 0
     logoH1.classList.add('logo-sm')
-    const randomIndex = Math.floor(Math.random() * WORDS.length)
-    const wordToGuess = WORDS[randomIndex]
+
+    const randomIndex = Math.floor(Math.random() * WORDSRANDOM.length)
+    const wordToGuess = WORDSRANDOM[randomIndex]
     sessionStorage.setItem('word', wordToGuess)
 
     gameDiv.innerHTML = createplaceholdersHtml()
@@ -155,10 +171,49 @@ export const startGame = () => {
         }
 
     })
+    const nameOfMode = createNameofMode() 
+    const hangmanImg = createHangmanImg()
+    const quite = createQuiteButton()
+   
 
+    gameDiv.before(nameOfMode)
+    gameDiv.prepend(hangmanImg)
+    gameDiv.appendChild(keyboardDiv)
+    gameDiv.appendChild(quite)
+
+    document.getElementById('quitebutton-id').onclick = () => {
+        const isSure = confirm('Are ypu sure you want to quite and lose your progress?')
+        if (isSure) {
+            stopGame('quite')
+        }
+
+    }
+    document.getElementById('aboutDeveloper').remove()
+}
+export const startGameAnimals = () => {
+    triesLeft = 10
+    winCount = 0
+    logoH1.classList.add('logo-sm')
+    const randomIndex = Math.floor(Math.random() * WORDSANIMALS.length)
+    const wordToGuess = WORDSANIMALS[randomIndex]
+    sessionStorage.setItem('word', wordToGuess)
+
+    gameDiv.innerHTML = createplaceholdersHtml()
+    gameDiv.innerHTML += `<p id="tries" class="mt-2">TRIES LEFT: <span id="tries-left" class="font-medium text-red-600">10</span></p>`
+
+    const keyboardDiv = createKeyboardHtml()
+    keyboardDiv.addEventListener("click", (event) => {
+        if (event.target.tagName.toLowerCase() === 'button') {
+            event.target.disabled = true
+            checkLetter(event.target.id)
+        }
+
+    })
+    const nameOfMode = createNameofMode() 
     const hangmanImg = createHangmanImg()
     const quite = createQuiteButton()
 
+    gameDiv.before(nameOfMode)
     gameDiv.prepend(hangmanImg)
     gameDiv.appendChild(keyboardDiv)
     gameDiv.appendChild(quite)
@@ -173,8 +228,147 @@ export const startGame = () => {
     document.getElementById('aboutDeveloper').remove()
 
 }
-const startScreen = () => {
+
+export const startGameCars = () => {
+    triesLeft = 10
+    winCount = 0
+    logoH1.classList.add('logo-sm')
+    const randomIndex = Math.floor(Math.random() * WORDSCARS.length)
+    const wordToGuess = WORDSCARS[randomIndex]
+    sessionStorage.setItem('word', wordToGuess)
+
+    gameDiv.innerHTML = createplaceholdersHtml()
+    gameDiv.innerHTML += `<p id="tries" class="mt-2">TRIES LEFT: <span id="tries-left" class="font-medium text-red-600">10</span></p>`
+
+    const keyboardDiv = createKeyboardHtml()
+    keyboardDiv.addEventListener("click", (event) => {
+        if (event.target.tagName.toLowerCase() === 'button') {
+            event.target.disabled = true
+            checkLetter(event.target.id)
+        }
+
+    })
+    const nameOfMode = createNameofMode() 
+    const hangmanImg = createHangmanImg()
+    const quite = createQuiteButton()
+
+    gameDiv.before(nameOfMode)
+    gameDiv.prepend(hangmanImg)
+    gameDiv.appendChild(keyboardDiv)
+    gameDiv.appendChild(quite)
+
+    document.getElementById('quitebutton-id').onclick = () => {
+        const isSure = confirm('Are ypu sure you want to quite and lose your progress?')
+        if (isSure) {
+            stopGame('quite')
+        }
+
+    }
+    document.getElementById('aboutDeveloper').remove()
+
+}
+export const startGameCities = () => {
+    triesLeft = 10
+    winCount = 0
+    logoH1.classList.add('logo-sm')
+    const randomIndex = Math.floor(Math.random() * WORDSCITIES.length)
+    const wordToGuess = WORDSCITIES[randomIndex]
+    sessionStorage.setItem('word', wordToGuess)
+
+    gameDiv.innerHTML = createplaceholdersHtml()
+    gameDiv.innerHTML += `<p id="tries" class="mt-2">TRIES LEFT: <span id="tries-left" class="font-medium text-red-600">10</span></p>`
+
+    const keyboardDiv = createKeyboardHtml()
+    keyboardDiv.addEventListener("click", (event) => {
+        if (event.target.tagName.toLowerCase() === 'button') {
+            event.target.disabled = true
+            checkLetter(event.target.id)
+        }
+
+    })
+
+    const nameOfMode = createNameofMode() 
+    const hangmanImg = createHangmanImg()
+    const quite = createQuiteButton()
+
+    gameDiv.before(nameOfMode)
+    gameDiv.prepend(hangmanImg)
+    gameDiv.appendChild(keyboardDiv)
+    gameDiv.appendChild(quite)
+
+    document.getElementById('quitebutton-id').onclick = () => {
+        const isSure = confirm('Are ypu sure you want to quite and lose your progress?')
+        if (isSure) {
+            stopGame('quite')
+        }
+
+    }
+    document.getElementById('aboutDeveloper').remove()
+
+}
+export const startGameIt = () => {
+    triesLeft = 10
+    winCount = 0
+    logoH1.classList.add('logo-sm')
+    const randomIndex = Math.floor(Math.random() * WORDSIT.length)
+    const wordToGuess = WORDSIT[randomIndex]
+    sessionStorage.setItem('word', wordToGuess)
+
+    gameDiv.innerHTML = createplaceholdersHtml()
+    gameDiv.innerHTML += `<p id="tries" class="mt-2">TRIES LEFT: <span id="tries-left" class="font-medium text-red-600">10</span></p>`
+
+    const keyboardDiv = createKeyboardHtml()
+    keyboardDiv.addEventListener("click", (event) => {
+        if (event.target.tagName.toLowerCase() === 'button') {
+            event.target.disabled = true
+            checkLetter(event.target.id)
+        }
+
+    })
+
+    const nameOfMode = createNameofMode() 
+    const hangmanImg = createHangmanImg()
+    const quite = createQuiteButton()
+
+    gameDiv.before(nameOfMode)
+    gameDiv.prepend(hangmanImg)
+    gameDiv.appendChild(keyboardDiv)
+    gameDiv.appendChild(quite)
+
+    document.getElementById('quitebutton-id').onclick = () => {
+        const isSure = confirm('Are ypu sure you want to quite and lose your progress?')
+        if (isSure) {
+            stopGame('quite')
+        }
+
+    }
+    document.getElementById('aboutDeveloper').remove()
+
+}
+const returnSameMode = () => {
+    if (MODES == 'Random') {
+        startGameRandom()
+    }
+    else if (MODES == 'Animals') {
+        startGameAnimals()
+    }
+    else if (MODES == 'Cars') {
+        startGameCars()
+    }
+    else if (MODES == 'Cities') {
+        startGameCities()
+    }
+    else if (MODES == 'IT') {
+        startGameIt()
+    }
+}
+
+export const startScreen = () => {
+  
     gameDiv.innerHTML =
         '  <button id="startGame" class="button-primary">Start game</button>';
-    document.getElementById('startGame').addEventListener('click', startGame);
+
+    document.getElementById('startGame').addEventListener('click', returnSameMode);
+    document.getElementById('h1NameofMode-id').remove()
+
 }
